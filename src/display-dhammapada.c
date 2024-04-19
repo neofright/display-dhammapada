@@ -1,5 +1,5 @@
 #ifndef VERSION
-#define VERSION "0.20?"
+#define VERSION "1.0"
 #endif
 static char c1[] = "     display-dhammapada V" VERSION " \n";
 static char c2[] = " (C) June 2012 by bodhi.zazen <bodhizazen@fedoraproject.org> and contributors. \n";
