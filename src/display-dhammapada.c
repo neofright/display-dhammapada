@@ -32,9 +32,7 @@ char *outcharset;
 
 
 static const char dp_pathname[] = DPPATHNAME ":dhammapada-english-transl.txt";
-static const char c6[] = "                                                                                  ";
 static const char dp_pathname_alt[] = DPPATHNAME_ALT ":dhammapada-alternate.txt";
-static const char c7[] = "                                                                                  ";
 static const char dp_pathname_pl[] = DPPATHNAME_PL ":dhammapada-polish-transl.txt";
 const char bad_args[] = "Bad arguments";
 const char IO_err[] = "I/O error";
