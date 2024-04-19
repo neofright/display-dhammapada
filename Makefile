@@ -21,7 +21,8 @@ MKDIR = install -d -m 755
 BIN      = $(package)
 BINshort = dhamma
 CC      = cc
-DP       = dhammapada-english-transl.txt
+DP       = dhammapada-english-bps.txt
+DPOLD    = dhammapada-english-transl.txt
 DPALT    = dhammapada-alternate.txt
 DPPL     = dhammapada-polish-transl.txt
 DOCS     = changelog copyright INSTALL
@@ -82,6 +83,7 @@ install: installdirs
 	
 	# Install data
 	$(INSTALL_DATA)		dhammapada/$(DP)	$(DESTDIR)$(datadir)
+	$(INSTALL_DATA)		dhammapada/$(DPOLD)	$(DESTDIR)$(datadir)
 	$(INSTALL_DATA)		dhammapada/$(DPALT)	$(DESTDIR)$(datadir)
 	$(INSTALL_DATA)		dhammapada/$(DPPL)	$(DESTDIR)$(datadir)
 

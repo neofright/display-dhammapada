@@ -13,6 +13,9 @@ static char c4[] = " No warranty. \n";
 #include <time.h>
 #define max_string_length 278
 #define mark_length 5
+#ifndef DPPATHNAME_BPS
+#define DPPATHNAME_BPS "/usr/share/display-dhammapada/dhammapada-english-bps.txt:/usr/local/share/display-dhammapada/dhammapada-english-bps.txt"
+#endif
 #ifndef DPPATHNAME
 #define DPPATHNAME "/usr/share/display-dhammapada/dhammapada-english-transl.txt:/usr/local/share/display-dhammapada/dhammapada-english-transl.txt"
 #endif
@@ -34,6 +37,7 @@ char *outcharset;
 static const char dp_pathname[] = DPPATHNAME ":dhammapada-english-transl.txt";
 static const char dp_pathname_alt[] = DPPATHNAME_ALT ":dhammapada-alternate.txt";
 static const char dp_pathname_pl[] = DPPATHNAME_PL ":dhammapada-polish-transl.txt";
+static const char dp_pathname_bps[] = DPPATHNAME_BPS ":dhammapada-english-bps.txt";
 const char bad_args[] = "Bad arguments";
 const char IO_err[] = "I/O error";
 const char cannot_open[] = "    -- cannot open any of the files.";
@@ -173,10 +177,10 @@ Find_verse (FILE * dp, char *begin_mark)
 void
 Help ()
 {
-     printf ("%s Displays a random verse \n", c1);
-     printf ("from John Richards's translation:\n%s \nor from F. Max Muller's translation:\n%s\n", dp_pathname, dp_pathname_alt);
+     printf ("%s Displays a random Dhammapada verse.\n", c1);
      printf (" Arguments: \n"
-	     "           -r               Use John Richard's translation (default)\n"
+	     "           -s               Use the Buddhist Publication Society's translation (default)\n"
+	     "           -r               Use John Richard's translation\n"
 	     "           -m               Use F. Max Muller's translation\n"
 	     "           -b               Display the same verse(s) from both\n"
              "           -pl              Use Polish language translation\n"
@@ -284,7 +288,7 @@ main (int argc, char *argv[])
      int index = -1;
      char *stop_char_ptr;
      char dp_filename [200];
-     enum {MULLER, RICHARDS, BOTH, POLISH} dhammapada_version = RICHARDS;
+     enum {BPS, MULLER, RICHARDS, BOTH, POLISH} dhammapada_version = BPS;
      int filename_number;
      int is_all = 0;
 #ifndef NO_LOCALE
@@ -305,6 +309,7 @@ main (int argc, char *argv[])
 	     else if (strcmp (argv[1], "-r") == 0) dhammapada_version = RICHARDS;
 	     else if (strcmp (argv[1], "-m") == 0) dhammapada_version = MULLER;
 	     else if (strcmp (argv[1], "-pl") == 0) dhammapada_version = POLISH;
+	     else if (strcmp (argv[1], "-s") == 0) dhammapada_version = BPS;
 	     else if (strcmp (argv[1], "-h") == 0 || strcmp (argv[1], "-?") == 0) {
 	        Help ();
 		exit (0);
@@ -339,27 +344,31 @@ open_file:
      dp_filename[0] = ' ';
      filename_number = 1;
      while (dp == NULL) {
-	     
-	     if (dhammapada_version == MULLER) {
-	     	Filename_num (dp_filename, dp_pathname_alt, filename_number);
-	     }
-	     else if (dhammapada_version == POLISH) {
-	     	Filename_num (dp_filename, dp_pathname_pl, filename_number);
-             }
-             else Filename_num (dp_filename, dp_pathname, filename_number);
-	     
-	     if (dp_filename[0] == '\0') {
-		     if (dhammapada_version == MULLER) 
-			     fprintf (stderr, "%s\n", dp_pathname_alt);
-		     else if (dhammapada_version == POLISH)  
-			     fprintf (stderr, "%s\n", dp_pathname_pl);
-		     else
-			fprintf (stderr, "%s\n", dp_pathname);	     
-		     Error (cannot_open);
-	     }
-	     
-	     dp = fopen (dp_filename, "rt");
-	     filename_number++;
+          if (dhammapada_version == MULLER) {
+               Filename_num (dp_filename, dp_pathname_alt, filename_number);
+          }
+          else if (dhammapada_version == POLISH) {
+               Filename_num (dp_filename, dp_pathname_pl, filename_number);
+          }
+          else if (dhammapada_version == RICHARDS) {
+               Filename_num (dp_filename, dp_pathname, filename_number);
+          }
+          else Filename_num (dp_filename, dp_pathname_bps, filename_number);
+
+          if (dp_filename[0] == '\0') {
+               if (dhammapada_version == MULLER)
+                    fprintf (stderr, "%s\n", dp_pathname_alt);
+               else if (dhammapada_version == POLISH)
+                    fprintf (stderr, "%s\n", dp_pathname_pl);
+               else if (dhammapada_version == RICHARDS)
+                    fprintf (stderr, "%s\n", dp_pathname);
+               else
+               fprintf (stderr, "%s\n", dp_pathname_bps);
+               Error (cannot_open);
+          }
+
+          dp = fopen (dp_filename, "rt");
+          filename_number++;
      }
      /* Print the verse(s) */
      if (is_all) 
