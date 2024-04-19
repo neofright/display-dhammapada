@@ -182,8 +182,8 @@ Help ()
 	     "           -m               Use F. Max Muller's translation\n"
 	     "           -b               Display the same verse(s) from both\n"
              "           -pl              Use Polish language translation\n"
-	     "           <number>         specify the number of the verse(s) to display \n"
-	     "           all              display all file at once \n");
+	     "           <number>         Specify the number of the verse(s) to display\n"
+	     "           all              Display all files at once\n");
      printf ("%s%s%s", c2, c3, c4);
 }
 
