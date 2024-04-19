@@ -183,7 +183,7 @@ Help ()
 	     "           -b               Display the same verse(s) from both\n"
              "           -pl              Use Polish language translation\n"
 	     "           <number>         specify the number of the verse(s) to display \n"
-	     "           all              display all file at once \n");
+	     "           all              display all files at once \n");
      printf ("%s%s%s", c2, c3, c4);
 }
 
