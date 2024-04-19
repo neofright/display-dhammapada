@@ -1,0 +1,60 @@
+The Dhammapada is an anthology of 423 verses from the Kuddaka Nikaya
+part of the Theravada Pali Canon.  It contains Buddhist ethical and
+spiritual precepts.  One of the translations is by John Richards; the
+other is an older translation by F. Max Muller.
+
+See the changelog for changes and updates to this package.
+
+Programs:
+
+display-dhammapada prints Dhammapada verses to standard out.
+The output can be piped to external programs such as 
+cowsay, zenity, and notify-send.
+
+dhamma is a shortcut for display-dhammapada
+
+xdhamma prints Dhammapada verses to your desktop using 
+notify-send
+
+For additional information and options see
+man display-dhammapada
+man dhamma
+man xdhamma
+
+To install :
+
+Debian/Ubuntu
+
+display-dhammapada is in the repositories and can be installed with
+
+sudo apt-get install display-dhammapada
+
+Packages:
+
+You can also download a pre-packaged deb or rpm from http://bodhizazen.net/display-dhammapada
+
+To install from source:
+
+Download http://bodhizazen.net/display-dhammapada/display-dhammapada-1.0.tar.gz
+
+tar xcvf display-dhammapada-1.0.tar.gz
+
+cd display-dhammapada-1.0
+
+make
+sudo make install
+	See `Makefile' for details.  You may need wish change you C compiler flags, 
+	WARN, OPT, or other variables.
+
+To remove :
+
+sudo make uninstall
+
+Home page: http://bodhizazen.net/display-dhammapada/
+Screen shots: http://bodhizazen.net/display-dhammapada/
+
+If you wish to package display-dhammapada, you can start the display-dhammapada.spec and debian directory included with display-dhammapada-1.0.tar.gz
+
+Bug reports: https://bugs.launchpad.net/display-dhammapada
+
+Contact: bodhi.zazen <bodhizazen@fedoraproject.org>

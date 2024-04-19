@@ -1,0 +1,133 @@
+display-dhammapada (1.0-0.1) unstable; urgency=low
+  * Non-maintainer upload.
+  * New upstream version.
+  * New upstream maintainer. 
+  - bodhi.zazen <bodhizazen at fedoraproject.org> 
+  -http://bodhizazen.net/display-dhammapada 
+  *display-dhammapada.c
+  -Changed copyright from Public License  to GPL v3
+  * Patched display-dhammapada.c
+  -Fixed warnings
+  -Paul Tagliamonte <paultag@ubuntu.com>
+  -Path changed from /usr/local to /usr
+  * contrib/gtk-dhammapada.c removed, it no longer compiles
+  * short version renamed to dhamma
+  * graphical wrapper renamed to xdhamma
+  * xdhamma was re-written
+  -Uses notify-send rather the xmessage
+  -Added icon set for notify-send
+  -Able to select translation
+  -License GPL V3
+  *Makefile re-written
+  -Removed script to gpg sign packages
+  -Removed script to upload source code
+  -Set default prefix to /usr
+  -Documents moved to /usr/share/doc/display-dhammapada
+  -Translations moved to //usr/share/display-dhammapada
+  -configured make to run as a user rather then root
+  -set permissions (dir 755 files 644)
+  -check if CFLAGS were passed on the command line
+  -test and if needed create target (install) directories
+  -cleaned dist, clean, and uninstall targets
+  *Verse 50 of dhammapada-english-transl.txt
+  - "no the shortcomings" changed to
+  - "not the shortcomings"
+  *Verse 127 in dhammapada-alternate.txt corrected - it was duplicate to 128
+  -http://forum.soft32.com/linux2/Bug-169539-Missing-verse-Max-Mueller-\
+  translation-ftopict67280.html
+  *Information from examples/* added to man page.
+  -examples/* removed
+  *Updated man pages
+  -(Closes: #677832)
+  -(Closes: LP: #1014195)
+  -fixed macros
+  -updated reference URL
+  *Updated README to include more information
+  *Organized the files into sub-directories
+  *Added icons for xdhamma (notify-send)
+  *copyright file updated
+ 
+ -- bodhi.zazen <bodhizazen@fedoraproject.org>  Mon, 25 Jun 2012 14:05:45 -0600
+
+display-dhammapada (0.23)
+
+  * Added Polish translation
+
+ -- Ričardas Čepas <rch@online.lt>  Mon, 11 2003 Aug 22:12:35 +0300
+
+display-dhammapada (0.22)
+
+  * Added GTK frontend by Josh Buhl <uzs33d@uni-bonn.de>
+
+ -- Ričardas Čepas <rch@online.lt>  Sun, 13 2003 Apr 20:24:11 +0300
+
+display-dhammapada (0.21)
+
+  * Added alternative translation by F. Max Muller, thanks to David Starner <dstarner98@aasaa.ofe.org>.
+  * Added note about amor (KDE toy) to man page and examples/amortips.
+
+ -- Ričardas Čepas <rch@WriteMe.Com>  Fri, 20 2001 Apr 11:54:04 +0200
+
+display-dhammapada (0.20)
+
+  * Added manpage, thanks to Kevin Ryde <user42@zip.com.au>
+  * Splitted Debian Linux part.
+
+ -- Ricardas Cepas <rch@WriteMe.Com>  Sun Oct 10 20:21:54 CEST 1999
+
+display-dhammapada (0.19) unstable; urgency=low
+
+  * Fixed shell name in 'xdp'.
+
+ -- Ricardas Cepas <rch@WriteMe.Com>  Mon, 15 Mar 1999 18:51:58 +0100
+
+display-dhammapada (0.18) unstable; urgency=low
+
+  * xsession example moved to xdp script.
+  * Minor changes in Makefile.
+
+ -- Ricardas Cepas <rch@WriteMe.Com>  Fri, 12 Mar 1999 15:39:52 +0100
+
+display-dhammapada (0.17) unstable; urgency=low
+
+  * Minor changes in Makefile.
+  * xsession example.
+
+ -- Ricardas Cepas <rch@WriteMe.Com>  Sun, 20 Sep 1998 12:28:57 +0200
+
+display-dhammapada (0.16) frozen unstable; urgency=low
+
+  * Fixed distclean target to prevent removing of .deb by dpkg. 
+  * Added -c option to install.
+
+ -- Ricardas Cepas <rch@debian.org>  Sat, 18 Jul 1998 21:25:49 +0200
+
+display-dhammapada (0.15) unstable; urgency=low
+
+  * Rewritten Makefile.
+  * Can find a verse by number.
+
+ -- Ricardas Cepas <rch@debian.org>  Wed, 11 Mar 1998 13:47:37 +0200
+
+display-dhammapada (0.14) unstable; urgency=low
+
+  * Removed /usr/local/ from Debian binary package.
+  * Relaxed program's copying policy.
+  * Changed help message's wording.
+
+ -- Ricardas Cepas <rch@debian.org>  Thu, 15 Jan 1998 12:18:21 +0200
+
+display-dhammapada (0.12) unstable; urgency=low
+
+  * Recompiled with libc6.
+  * Minor fixes.
+  * Added example.
+
+ -- Ricardas Cepas <rch@debian.org>  Mon, 23 Jun 1997 15:10:37 +0300
+
+display-dhammapada (0.11) unstable; urgency=low
+
+  * Initial Debian release.
+
+ -- Ricardas Cepas <rch@pub.osf.lt>  Fri, 7 Feb 1997 13:14:08 +0200
+
