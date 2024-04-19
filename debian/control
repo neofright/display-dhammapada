@@ -1,0 +1,19 @@
+Source: display-dhammapada
+Section: misc
+Priority: optional
+Maintainer: bodhi zazen <bodhi.zazen@fedoraproject.org>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.3
+Homepage: http://bodhizazen.net/display-dhammapada/
+
+Package: display-dhammapada
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: x11-utils,linotify-bin
+Description: fortune-like collection of Buddhist sayings
+ This program displays a random verse from the English or Polish translations of
+ the Dhammapada, a "versified Buddhist scripture traditionally ascribed to the
+ Buddha himself" (from http://en.wikipedia.org/wiki/Dhammapada).
+ .
+ As this program works similarly to fortune, one may use it in shell profiles
+ or .sig generators, among others.

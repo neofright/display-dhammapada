@@ -1,0 +1,155 @@
+display-dhammapada (0.23-7) unstable; urgency=low
+
+  * description in debian/control was told to be in violation with Policy 3.4.1
+    paragraph 2 and 3.4.2 paragraph 2. (Closes: #566742)
+  * Some minor changes to get rid of lintian warnings.
+
+ -- Jakub Nadolny <jakub.nadolny@ite.pl>  Sun, 28 Feb 2010 18:27:07 +0100
+
+display-dhammapada (0.23-6) unstable; urgency=low
+
+  * xbase-clients is replaced by x11-utils.
+  * In manpage .DD, .Bd, .Ed are removed. 
+
+ -- Jakub Nadolny <jakub.nadolny@ite.pl>  Wed, 24 Dec 2008 10:52:04 +0100
+
+display-dhammapada (0.23-5) unstable; urgency=low
+
+  * Verse 127 in dhammapada-alternate.txt corrected - it was duplicate to 128
+    before. Proper version received from alt.religion.buddhism. Information
+    about that mistake has been send to upstream. (Closes: #169539)
+  * Upstream Makefile corrected - stripping option removed from install.
+    (Closes: #436769)
+  * Package description contains now short explanation about "Dhammapada"
+    itself. (Closes: #440696)
+  * Some minor changes to get rid of lintian warnings.
+
+ -- Jakub Nadolny <jakub.nadolny@ite.pl>  Wed, 10 Oct 2007 15:53:38 +0200
+
+display-dhammapada (0.23-4) unstable; urgency=low
+
+  * debian/rules file corrected, prefix was wrong and program could not find
+    data files.
+
+ -- Jakub Nadolny <jakub.nadolny@ite.pl>  Fri, 26 Jan 2007 14:42:48 +0100
+
+display-dhammapada (0.23-3) unstable; urgency=low
+
+
+  * debian/templates moved to debian/NEWS.Debian (Closes: #402300)
+  * some minor lintian warnings corrected.
+
+ -- Jakub Nadolny <jakub.nadolny@ite.pl>  Mon,  8 Jan 2007 12:30:45 +0100
+
+display-dhammapada (0.23-2) unstable; urgency=low
+
+  * Amaya: Jakub fixes all I broke :)
+
+ -- Jakub Nadolny <jakub.nadolny@ite.pl>  Mon, 13 Nov 2006 13:41:52 +0100
+
+display-dhammapada (0.23-1) unstable; urgency=high
+
+  * New maintainer (Closes: #285159)
+  * New upstream version (Closes: #285157)
+  * Author of Polish translation agreed to use Creative Commons Public Domain
+    Dedication as a license: http://creativecommons.org/licenses/publicdomain
+    (Closes: #285156)
+  * Added gtk-dhammapada (support by Wojciech Mula)
+  * dp name changed to dhamma, xdp changed to xdhamma
+  * xdhamma has been modified to display properly Polish messages (patch
+    prepared by Wojciech Mula)
+  * Some clearance to make the package lintian clean.
+  * Sponsored upload, some polishing by Amaya Rodrigo <amaya@debian.org>:
+    - Repackaged from scratch. debian/compat = 5
+    - Updated Standars version, no changes needed.
+    - Reformatted Copyright and debian/copyright files.
+    - urgency=high because #285156 is RC.
+    - Ack previous NMU (Closes: #359390).
+    - Heavily cleaned upstream's Makefile
+
+ -- Jakub Nadolny <jakub.nadolny@ite.pl>  Mon, 13 Nov 2006 13:41:52 +0100
+
+display-dhammapada (0.21-3.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Get rid of the /usr/doc/ link in postinst (Closes: #359390). 
+
+ -- Amaya Rodrigo Sastre <amaya@debian.org>  Thu, 13 Jul 2006 21:04:45 +0200
+
+display-dhammapada (0.21-3) unstable; urgency=low
+
+  * Update maintainer address.
+
+ -- David Starner <dvdeug@debian.org>  Tue, 23 Jul 2002 23:30:42 -0500
+
+display-dhammapada (0.21-2) unstable; urgency=low
+
+  * The new groff broke the manpage; I had to change a Dd to DD.
+
+ -- David Starner <dstarner98@aasaa.ofe.org>  Sun, 9 Jun 2001 01:31:45 -0500
+
+display-dhammapada (0.21-1) unstable; urgency=low
+
+  * New upstream version - only minor changes from alt1
+  * UTF-8 man page and help
+
+ -- David Starner <dstarner98@aasaa.ofe.org>  Tue, 24 Apr 2001 21:55:45 -0500
+
+display-dhammapada (0.20-alt1) unstable; urgency=low
+
+  * Include some experimental patches sent upstream.
+  * display-dhammapada now supports two translations. It required
+    a rewrite and will require another one if a third translation
+    or the original shows up.
+  * This is a beta version - there are major changes from the
+    last version, and may be major changes if the upstream author
+    decides not to use my patch and goes another way. Be forwarned.
+  
+ -- David Starner <dstarner98@aasaa.ofe.org>  Tue, 10 Apr 2001 20:55:45 -0500
+
+display-dhammapada (0.20-5) unstable; urgency=low
+
+  * xcontrib is dead; recommend xbase-clients instead
+ 
+ -- David Starner <dstarner98@aasaa.ofe.org>  Fri, 17 Nov 2000 23:09:42 -0500
+
+display-dhammapada (0.20-4) unstable; urgency=low
+
+  * New maintainer (Closes: #68091) 
+  * Remove /usr/bin/dp -> /usr/bin/display-dhammapada link 
+    (Closes: #43217).
+  * Move the actual text from /usr/share/doc to 
+    /usr/share/display-dhammapada so you can remove documentation and
+    it will still work.
+  * Change Suggests: xcontrib to Recommends: xcontrib, since xdp won't
+    work without it. 
+ 
+ -- David Starner <dstarner98@aasaa.ofe.org>  Mon, 17 Apr 2000 22:44:11 -0500
+
+display-dhammapada (0.20-3) unstable; urgency=low
+
+  * Applied patch submitted by Kevin Ryde to make the manpage reference 
+    /usr/share/doc instead of /usr/doc.
+
+ -- Torsten Landschoff <torsten@debian.org>  Tue, 26 Oct 1999 10:19:59 +0200
+
+display-dhammapada (0.20-2) unstable; urgency=low
+
+  * The text-database is now installed uncompressed so that the program 
+    even works ;)
+  * LSM-Entry removed.
+
+ -- Torsten Landschoff <torsten@debian.org>  Tue, 26 Oct 1999 09:04:48 +0200
+
+display-dhammapada (0.20-1) unstable; urgency=low
+
+  * New upstream version.
+  * No longer a Debian native package.
+  * Package orphaned.
+  * Menu entry added.
+  * See changelog.gz for past changes.
+  * Moved to policy 3.0.1.
+  * Converted the build scripts to debhelper.
+
+ -- Torsten Landschoff <torsten@debian.org>  Mon, 25 Oct 1999 02:35:26 +0200
+

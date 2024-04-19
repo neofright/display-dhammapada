@@ -1,0 +1,94 @@
+.\" -*- coding: UTF-8 -*-
+.TH XDHAMMA 1  "April 2003" "1.0" "xdhamma man page"
+.SH NAME
+.P
+xdhamma \- graphical displayed verse from the Dhammapada.
+.SH SYNOPSIS
+.P
+.B xdhamma
+.I [OPTIONS] [num]
+.SH DESCRIPTION
+.P
+The Dhammapada is an anthology of 423 verses from the Kuddaka Nikaya
+part of the Theravada Pali Canon.  It contains Buddhist ethical and 
+spiritual precepts.  One of the translations is by John Richards; the 
+other is an older translation by F. Max Muller.
+.P
+.B xdhamma 
+prints a graphical notification using
+.B notify\(hysend
+.SH OPTIONS
+.P
+.TP 8
+.B \(hyr | \(hy\(hyrichards (Default)
+Use the Richards translation.
+.TP 8
+.B \(hym | \(hy\(hymuller
+Use the Muller translation.
+.TP 8
+.B \(hyp | \(hy\(hypolish
+Use the Polish translation (default for Polish locale).
+.TP 8
+.B \(hyg | \(hy\(hygrunge
+Use the grunge Buddha icon with notify\(hysend.
+.TP 8
+.B \(hye | \(hy\(hyenso
+Use the enso icon with notify\(hysend.
+.TP 8
+.B \(hyl | \(hy\(hylotus
+Use the lotus icon with notify\(hysend.
+.TP 8
+.B \(hyk | \(hy\(hykdialog
+Display Dhammapada verse with kdialog.
+.TP 8
+.B \(hyz | \(hy\(hyzenity
+Display Dhammapada verse with zenity.
+.TP 8
+.B [num]
+Print the given number verse.
+.P
+.SH EXAMPLES
+.P
+To display a verse each time you log in on a graphical (X Window)
+session, run
+.B xdhamma
+in your DE session start\(hyup or
+.IR ~/.xsession .
+.SH FILES
+.P
+.I /usr/share/display\(hydhammapada/dhammapada\(hyenglish\(hytransl.txt
+.P
+.I /usr/share/display\(hydhammapada/dhammapada\(hyalternate.txt
+.P
+.I /usr/share/display\(hydhammapada/dhammapada\(hypolish\(hytransl.txt
+.SH "SEE ALSO"
+.BR notify\(hysend
+.SH BUGS
+.P
+Please report bugs on Launchpad :
+.I
+https://bugs.launchpad.net/display-dhammapada
+.SH AUTHORS
+.P
+Author:
+.B bodhi.zazen 
+<bodhizazen at fedoraproject dot org>  
+.P
+Program:
+.B Copyright GPL v3
+.P
+Home Page:
+.I
+http://bodhizazen.net/display-dhammapada/
+.P
+Richards' English translation of the Dhammapada: Copyright (C) 1993 John
+Richards, Pembrokeshire (UK), permission granted for use here.
+See http://eawc.evansville.edu/anthology/dhammapada.htm
+.P
+Muller's translation of the Dhammapada: Public Domain, used here courtesy of
+Project Gutenberg.
+.P
+Polish translation (by Zbigniew Becker): Public Domain, as explained at
+http://creativecommons.org/licenses/publicdomain
+.br
+See also http://mahajana.net/dhammapada/

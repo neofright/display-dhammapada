@@ -1,0 +1,161 @@
+#!/bin/bash
+
+### xdhamma by bodhi.zazen
+## This program displays verses of the Dhammapada in either a graphical environment or console
+
+## Variables
+IPATH='/usr/share/icons/display-dhammapada/'
+NS=$(which notify-send 2>/dev/null)
+KDIALOG=$(which kdialog 2>/dev/null) || KDIALOG=''
+ZENITY=$(which zenity 2>/dev/null) || ZENITY=''
+
+## Functions ##
+
+#Function usage: displays help message in terminal or X
+usage ()
+{
+MSG='This script prints verse of the 
+Dhammapada to notify-send 
+if running X.
+
+Options:
+-g | grunge icon
+-e | enso icon
+-l | lotus icon
+
+-r | Richards translation (default)
+-m | Muller translation
+-p | Polish translation
+
+-k | use kdialog
+-z | use zenity'
+
+if [ -z "$DISPLAY" ]; then
+    echo -e '\e[0;31m'"\n${MSG}";echo -e '\e[0m' ""
+    exit 0
+elif [ -x "$ZENITY" ]; then
+    $ZENITY --info --text "$MSG" &>/dev/null
+    exit 0
+elif [ -x "$KDIALOG" ]; then
+    $KDIALOG --msgbox "$MSG" &>/dev/null
+    exit 0
+else
+    "$NS" -t 12000 "xdp options" "${MSG}" -i /usr/share/icons/display-dhammapada/buddha1.png
+    exit 0
+fi
+}
+
+# Function opts - get command line options
+opts ()
+{
+case $OPT in
+g | -g | --grunge) # Buddha grunge icon
+ICON='buddha2.png'
+;;
+e | -e | --enso) # enso icon
+ICON='enso.png'
+;;
+l | -l | --lotus) # lotus icon
+ICON='lotus.png'
+;;
+r | -r | --richards) #Richards translation (default)
+OPTION='r'
+;;
+m | -m | --muller) #Muller translation
+OPTION='m'
+;;
+p | -p | --polish) # Polish translation
+OPTION='p'
+;;
+k | -k | --kdialog)
+DIALOG=kdialog
+;;
+z | -z | --zenity)
+DIALOG=zenity
+;;
+*)
+usage
+exit 1
+;;
+esac
+}
+
+## Main program ##
+
+
+# Set default icon here
+ICON='buddha1.png'
+
+# Default is to call display-dhammapada with out options, thus OPTION=''
+OPTION=''
+
+# By default we use notify-send
+DIALOG=''
+
+# Get options
+while [ "$#" -gt "0" ]
+do
+if [[ "$1" =~ ^[0-9]+$ ]] ; then
+    VERSE="$1"
+fi
+if [ "${1:0:2}" = "--" ] ; then
+OPT="$1"
+opts
+else
+while getopts "gelmprkzh" OPT; do
+opts
+done
+fi
+shift
+done
+
+# Get Dhammapada verse to be displayed
+case $OPTION in
+r)
+DHAMMAPADA="`display-dhammapada -r $VERSE`"
+;;
+m)
+DHAMMAPADA="`display-dhammapada -m $VERSE`"
+;;
+p)
+DHAMMAPADA="`display-dhammapada -pl $VERSE`"
+;;
+*)
+DHAMMAPADA="`display-dhammapada $VERSE`"
+;;
+esac
+
+# Check if we are running X
+# If not, display a terminal
+# If so, use notify-send
+if [ -z "$DISPLAY" ]; then
+    echo -e '\e[0;32m'"$DHAMMAPADA";echo -e '\e[0m' ""
+elif [ -z "$DIALOG" ]; then
+    if [ -x "$NS" ]; then
+        "$NS" -t 16000 "Dhammapada" "$DHAMMAPADA" -i "${IPATH}""${ICON}" &>/dev/null || echo -e '\e[0;31m' "notify-send failed";echo -e '\e[0m' ""
+    else
+        echo -e '\e[0;31m' "Please install libnotify";echo -e '\e[0m' ""
+    exit 0
+    fi
+else
+    case $DIALOG in
+    kdialog)
+        if [ ! -z "$KDIALOG" ]; then
+            $KDIALOG --title "Dhammapada" --msgbox "$DHAMMAPADA" &>/dev/null
+        else
+            "$NS" -t 16000 "Dhammapada" "$DHAMMAPADA" -i "${IPATH}""${ICON}" &>/dev/null
+        fi
+        exit 0
+    ;;
+    zenity)
+        if [ ! -z "$ZENITY" ]; then
+            $ZENITY --forms --title="Dhammapada" --text="${DHAMMAPADA}" &>/dev/null
+        else
+            "$NS" -t 16000 "Dhammapada" "$DHAMMAPADA" -i "${IPATH}""${ICON}" &>/dev/null
+        fi
+        exit 0
+    ;;
+    esac
+fi
+
+exit 0

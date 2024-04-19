@@ -1,0 +1,54 @@
+Files: debian/* bin/xdhamma  man/*  Makefile display-dhammapada.spec doc/* src*
+Copyright: 2012 Bodhi Zazen <bodhizazen@fedoraproject.org>
+License: GPL-3.0+
+.
+Files: dhammapada/dhammapada-english-transl.txt
+Copyright: 1993 John Richards <Jhr@elidor.demon.co.uk>
+License: Public Domain, as explained at http://creativecommons.org/licenses/publicdomain
+.
+Files: dhammapada/dhammapada-alternate.txt
+Copyright 1997-2001 Ricardas Cepas <rch@online.lt> and contributors
+License: Public Domain, as explained at http://creativecommons.org/licenses/publicdomain
+        See also: http://unicode.strangled.net/me/rch/dd.html
+.
+Files: dhammapada/dhammapada-polish-transl.txt
+Copyright 2006 Zbigniew Becker <redakcja@mahajana.net>
+License: Public Domain, as explained at http://creativecommons.org/licenses/publicdomain
+        See also http://mahajana.net/dhammapada/
+.
+License: GPL-3.0+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+.
+This package is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+.
+On Debian systems, the complete text of the GNU General
+Public License version 3 can be found in "/usr/share/common-licenses/GPL-3".
+.
+Files: icon/buddha1.png
+Source: http://www.zentao.org/en/zen-sfondi-desktop-wallpapers/buddha-wallpaper-siddhartha-gautama-consapevolezzabuddha-wallpaper-siddhartha-gautama-awareness
+Author: Sensei 
+License: Public License, as explained by http://creativecommons.org/licenses/by/3.0/
+ "All rights belong to this eternal ever-changing universe - Presence, serenity and awareness"
+.
+Files: icon/buddha2.png
+Source: http://www.wallpaper1080hd.com/desk/1680x1050/2010/0706/4110.html
+Author: Unknown
+License: Public License, as explained by http://creativecommons.org/licenses/by/3.0/
+ "This is a high-definition widescreen wallpapers site, collected and produced excellent high definition wallpaper, and it is free, like the picture of a friend for the free download, suitable for any computer or mobile phone!"
+.
+Files:  icon/enso.png
+Author: bodhi.zazen
+License: GPL-3.0+
+.
+Files:  icon/lotus.png
+Author: bodhi.zazen
+License: GPL-3.0+
