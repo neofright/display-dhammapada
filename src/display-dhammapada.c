@@ -1,10 +1,10 @@
 #ifndef VERSION
 #define VERSION "1.0"
 #endif
-static char c1[] = "     display-dhammapada V" VERSION " \n";
-static char c2[] = " (C) June 2012 by bodhi.zazen <bodhizazen@fedoraproject.org> and contributors. \n";
+static char c1[] = "     display-dhammapada V" VERSION "\n";
+static char c2[] = " (C) June 2012 by bodhi.zazen <bodhizazen@fedoraproject.org> and contributors.\n";
 static char c3[] = " Copying policy: GPL v3.\n";
-static char c4[] = " No warranty. \n";
+static char c4[] = " No warranty.\n";
 
 #include <errno.h>
 #include <stdlib.h>
@@ -144,8 +144,8 @@ Find_begin_of_verses (FILE * dp)
                     Error (unexp_EOF);
                else
                     Error (IO_err);
-	  }
-	}
+       }
+     }
      while (strstr (s, "---------------------------------------------") == NULL);
      do {
           if (fgets (s, max_string_length, dp) == NULL) {
@@ -153,8 +153,8 @@ Find_begin_of_verses (FILE * dp)
                     Error (unexp_EOF);
                else
                     Error (IO_err);
-	  }
-	}
+       }
+     }
      while (strstr (s, "---------------------------------------------") == NULL);
 }
 void
@@ -164,13 +164,13 @@ Find_verse (FILE * dp, char *begin_mark)
 
      do {
           if (fgets (s, max_string_length, dp) == NULL)
-	  {
+       {
                if (feof (dp))
                     Error (unexp_EOF);
                else
                     Error (IO_err);
-	  }
-	}
+       }
+     }
      while (strstr (s, begin_mark) == NULL);
 }
 
@@ -179,13 +179,13 @@ Help ()
 {
      printf ("%s Displays a random Dhammapada verse.\n", c1);
      printf (" Arguments: \n"
-	     "           -s               Use the Buddhist Publication Society's translation (default)\n"
-	     "           -r               Use John Richard's translation\n"
-	     "           -m               Use F. Max Muller's translation\n"
-	     "           -b               Display the same verse(s) from both\n"
-             "           -pl              Use Polish language translation\n"
-	     "           <number>         Specify the number of the verse(s) to display\n"
-	     "           all              Display all files at once\n");
+          "           -s               Use the Buddhist Publication Society's translation (default)\n"
+          "           -r               Use John Richard's translation\n"
+          "           -m               Use F. Max Muller's translation\n"
+          "           -b               Display the same verse(s) from both\n"
+          "           -pl              Use Polish language translation\n"
+          "           <number>         Specify the number of the verse(s) to display\n"
+          "           all              Display all files at once\n");
      printf ("%s%s%s", c2, c3, c4);
 }
 
@@ -207,21 +207,21 @@ Print_verse (FILE * dp, char *end_mark)
                       Error (unexp_EOF);
                  else
                       Error (IO_err);
-	    }
+         }
 #ifndef NO_LOCALE
-	    if (iconvh != (iconv_t) -1) {
-	      strcpy(s2, s);
-	      errno = 0;
-	      inleft = strlen(s2);
-	      outleft = sizeof(s)-1;
-	      inptr = s2; outptr = s;
-	      conv = iconv(iconvh, &inptr, &inleft, &outptr, &outleft);
-	      if (conv  == (size_t) -1 || errno) {
-		  fprintf(stderr, "Conversion to %s error %i: input is:\n%s", outcharset, errno, inptr);
-		  exit (1);
-	      }
-	      *outptr = '\0';
-	    }
+         if (iconvh != (iconv_t) -1) {
+           strcpy(s2, s);
+           errno = 0;
+           inleft = strlen(s2);
+           outleft = sizeof(s)-1;
+           inptr = s2; outptr = s;
+           conv = iconv(iconvh, &inptr, &inleft, &outptr, &outleft);
+           if (conv  == (size_t) -1 || errno) {
+            fprintf(stderr, "Conversion to %s error %i: input is:\n%s", outcharset, errno, inptr);
+            exit (1);
+           }
+           *outptr = '\0';
+         }
 #endif
             printf (" %s ", s);
             printed_strings_counter++;
@@ -264,21 +264,22 @@ Random_index ()
      return (random_index);
 }
 
-void Filename_num (char* filename, const char* filename_list, int num)
+void
+Filename_num (char* filename, const char* filename_list, int num)
 {
-	int i;
-	for (i = 1; i < num; i++) {	
-		while (*filename_list != ':' && *filename_list != '\0') 
-			filename_list++;
-		if (*filename_list == '\0') {
-			*filename = '\0';
-			return;
-		}
-		filename_list++;
-	}
-	while (*filename_list != ':' && *filename_list != '\0')
-		*filename++ = *filename_list++;
-	*filename = '\0';
+     int i;
+     for (i = 1; i < num; i++) {	
+          while (*filename_list != ':' && *filename_list != '\0') 
+               filename_list++;
+          if (*filename_list == '\0') {
+               *filename = '\0';
+               return;
+          }
+          filename_list++;
+     }
+     while (*filename_list != ':' && *filename_list != '\0')
+          *filename++ = *filename_list++;
+     *filename = '\0';
 }
 
 int
@@ -305,86 +306,85 @@ main (int argc, char *argv[])
 
      /* Split the options and set the booleans */
      if (argc > 1) {
-	     if (strcmp (argv[1], "-b") == 0) dhammapada_version = BOTH;
-	     else if (strcmp (argv[1], "-r") == 0) dhammapada_version = RICHARDS;
-	     else if (strcmp (argv[1], "-m") == 0) dhammapada_version = MULLER;
-	     else if (strcmp (argv[1], "-pl") == 0) dhammapada_version = POLISH;
-	     else if (strcmp (argv[1], "-s") == 0) dhammapada_version = BPS;
-	     else if (strcmp (argv[1], "-h") == 0 || strcmp (argv[1], "-?") == 0) {
-	        Help ();
-		exit (0);
-	     }
-	     else if (!(is_all = ((strcmp (argv[1], "all") == 0)))) {
-		errno = 0;
-		index = strtol (argv[1], &stop_char_ptr, 0);
-		if (errno == ERANGE || *stop_char_ptr != '\0') { 
-			index = -1;
-			Help ();
-			Error (bad_args);
-		}
-	     }
-	     if (argc > 2) {
-		if (index == -1 || ! is_all) {
-	     		if (!(is_all = ((strcmp (argv[2], "all") == 0)))) {
-				errno = 0;
-				index = strtol (argv[2], &stop_char_ptr, 0);
-				if (errno == ERANGE || *stop_char_ptr != '\0') 
-					index = -1;
-			}
-		}
-		else {
-			Help ();
-			Error (bad_args);
-		}
-	     }
-	}
+          if (strcmp (argv[1], "-b") == 0) dhammapada_version = BOTH;
+          else if (strcmp (argv[1], "-r") == 0) dhammapada_version = RICHARDS;
+          else if (strcmp (argv[1], "-m") == 0) dhammapada_version = MULLER;
+          else if (strcmp (argv[1], "-pl") == 0) dhammapada_version = POLISH;
+          else if (strcmp (argv[1], "-s") == 0) dhammapada_version = BPS;
+          else if (strcmp (argv[1], "-h") == 0 || strcmp (argv[1], "-?") == 0) {
+             Help ();
+          exit (0);
+          }
+          else if (!(is_all = ((strcmp (argv[1], "all") == 0)))) {
+               errno = 0;
+               index = strtol (argv[1], &stop_char_ptr, 0);
+               if (errno == ERANGE || *stop_char_ptr != '\0') { 
+                    index = -1;
+                    Help ();
+                    Error (bad_args);
+               }
+          }
+          if (argc > 2) {
+               if (index == -1 || ! is_all) {
+                         if (!(is_all = ((strcmp (argv[2], "all") == 0)))) {
+                         errno = 0;
+                         index = strtol (argv[2], &stop_char_ptr, 0);
+                         if (errno == ERANGE || *stop_char_ptr != '\0') 
+                              index = -1;
+                    }
+               }
+               else {
+                    Help ();
+                    Error (bad_args);
+               }
+          }
+     }
 open_file:
      /* Open the file (Richards if both) */
      dp = NULL;
      dp_filename[0] = ' ';
      filename_number = 1;
      while (dp == NULL) {
-	     
-	     if (dhammapada_version == MULLER) {
-	     	Filename_num (dp_filename, dp_pathname_alt, filename_number);
-	     }
-	     else if (dhammapada_version == POLISH) {
-	     	Filename_num (dp_filename, dp_pathname_pl, filename_number);
-             }
-	     else if (dhammapada_version == BPS) {
-	     	Filename_num (dp_filename, dp_pathname_bps, filename_number);
-             }
-             else Filename_num (dp_filename, dp_pathname, filename_number);
-	     
-	     if (dp_filename[0] == '\0') {
-		     if (dhammapada_version == MULLER) 
-			     fprintf (stderr, "%s\n", dp_pathname_alt);
-		     else if (dhammapada_version == POLISH)  
-			     fprintf (stderr, "%s\n", dp_pathname_pl);
-		     else if (dhammapada_version == BPS)  
-			     fprintf (stderr, "%s\n", dp_pathname_bps);
-		     else
-			fprintf (stderr, "%s\n", dp_pathname);	     
-		     Error (cannot_open);
-	     }
-	     
-	     dp = fopen (dp_filename, "rt");
-	     filename_number++;
+          if (dhammapada_version == MULLER) {
+               Filename_num (dp_filename, dp_pathname_alt, filename_number);
+          }
+          else if (dhammapada_version == POLISH) {
+               Filename_num (dp_filename, dp_pathname_pl, filename_number);
+          }
+          else if (dhammapada_version == BPS) {
+               Filename_num (dp_filename, dp_pathname_bps, filename_number);
+          }
+          else Filename_num (dp_filename, dp_pathname, filename_number);
+
+          if (dp_filename[0] == '\0') {
+               if (dhammapada_version == MULLER) 
+                    fprintf (stderr, "%s\n", dp_pathname_alt);
+               else if (dhammapada_version == POLISH)  
+                    fprintf (stderr, "%s\n", dp_pathname_pl);
+               else if (dhammapada_version == BPS)  
+                    fprintf (stderr, "%s\n", dp_pathname_bps);
+               else
+               fprintf (stderr, "%s\n", dp_pathname);	     
+               Error (cannot_open);
+          }
+          
+          dp = fopen (dp_filename, "rt");
+          filename_number++;
      }
      /* Print the verse(s) */
      if (is_all) 
-     	for (index = 0; index < sizeof marks / sizeof marks[0]; index++)
-		Get_and_print_verse (dp, index);
+          for (index = 0; index < sizeof marks / sizeof marks[0]; index++)
+          Get_and_print_verse (dp, index);
      else if (index != -1)
-	Get_and_print_verse_number_n (dp, index);
+     Get_and_print_verse_number_n (dp, index);
      else 
         Get_and_print_verse (dp, Random_index ());
      /* Close the file */
      fclose (dp);
      /* If both, set dhammapada_version to MULLER and goto open_file */
      if (dhammapada_version == BOTH) {
-	     dhammapada_version = MULLER;
-	     goto open_file;
+          dhammapada_version = MULLER;
+          goto open_file;
      }
 #ifndef NO_LOCALE
      if (iconvh != (iconv_t) -1) iconv_close(iconvh);
