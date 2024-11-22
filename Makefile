@@ -2,6 +2,7 @@ SHELL = /bin/sh
 package = display-dhammapada
 Package = $(package)
 VERSION = 1.0
+UNAME := $(shell uname)
 
 ## Path
 prefix = /usr
@@ -42,7 +43,12 @@ options:
 # are not set on the command line or by
 # your package manager.
 ifeq ($(strip $(CFLAGS)),)
+ifeq ($(UNAME), Linux)
 OPT = -O2
+endif
+ifeq ($(UNAME), Darwin)
+OPT = -O2 -L/opt/homebrew/Cellar/libiconv/1.17/ -liconv
+endif
 WARN = -ansi -Wall -Wno-unused -Wno-parentheses
 CFLAGS = $(OPT) $(WARN)
 endif
