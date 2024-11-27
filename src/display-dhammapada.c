@@ -11,6 +11,7 @@ static char c4[] = " No warranty.\n";
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <sys/random.h>
 #define max_string_length 278
 #define mark_length 5
 #ifndef DPPATHNAME_BPS
@@ -258,12 +259,21 @@ Get_and_print_verse_number_n (FILE * dp, int number)
 int
 Random_index ()
 {
-     int i, random_index;
-
-     srand ((unsigned int) time (NULL));
-/*      min=0, max=numb.of elem.-1+.999 */
-     random_index = (int) ((double) (sizeof marks / sizeof marks[0]) * (i = rand ()) / (RAND_MAX + 1.0));
-     return (random_index);
+     unsigned int random_index = 0;
+     unsigned int min = 0;
+     unsigned int max = (sizeof marks / sizeof marks[0]);
+#ifdef __APPLE__
+     /* https://www.unix.com/man-page/mojave/2/getentropy */
+     getentropy(&random_index, sizeof(unsigned int));
+#endif
+#ifdef __linux__
+     /* https://www.delftstack.com/howto/c/c-generate-random-number/#use-the-getrandom-function-to-generate-random-number-in-c */
+     getrandom(&random_index, sizeof(unsigned int), GRND_NONBLOCK) == -1
+      ? perror("getrandom")
+      : "";
+#endif
+     random_index = random_index % (max - min + 1) + min;
+     return random_index;
 }
 
 void
