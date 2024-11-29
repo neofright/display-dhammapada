@@ -49,7 +49,7 @@ endif
 ifeq ($(UNAME), Darwin)
 OPT = -O2 -L/opt/homebrew/Cellar/libiconv/1.17/ -liconv
 endif
-WARN = -ansi -Wall -Wno-unused -Wno-parentheses
+WARN = -std=c17 -Wall -Wno-unused -Wno-parentheses -pedantic
 CFLAGS = $(OPT) $(WARN)
 endif
 
