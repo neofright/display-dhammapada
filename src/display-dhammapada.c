@@ -178,7 +178,7 @@ Find_verse (FILE * dp, char *begin_mark)
 }
 
 void
-Help ()
+Help (void)
 {
      printf ("%s Displays a random Dhammapada verse.\n", c1);
      printf (" Arguments: \n"
@@ -257,7 +257,7 @@ Get_and_print_verse_number_n (FILE * dp, int number)
 }
 
 int
-Random_index ()
+Random_index (void)
 {
      unsigned int random_index = 0;
      unsigned int min = 0;
