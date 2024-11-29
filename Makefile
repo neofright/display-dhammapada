@@ -54,7 +54,7 @@ CFLAGS = $(OPT) $(WARN)
 endif
 
 $(BIN): 
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o bin/$(package)  src/$(package).c
+	$(CC) $(CFLAGS) -o bin/$(package) src/$(package).c
 	
 	
 clean:
