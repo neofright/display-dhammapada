@@ -1,10 +1,6 @@
 #ifndef VERSION
 #define VERSION "1.0"
 #endif
-static char c1[] = "     display-dhammapada V" VERSION "\n";
-static char c2[] = " (C) June 2012 by bodhi.zazen <bodhizazen@fedoraproject.org> and contributors.\n";
-static char c3[] = " Copying policy: GPL v3.\n";
-static char c4[] = " No warranty.\n";
 
 #include <errno.h>
 #include <stdlib.h>
@@ -190,6 +186,10 @@ Help (void)
           "           <number>         Specify the number of the verse(s) to display\n"
           "           all              Display all files at once\n");
      printf ("%s%s%s", c2, c3, c4);
+     static char c1[] = "     display-dhammapada V" VERSION "\n";
+     static char c2[] = "(C) June 2012 by bodhi.zazen <bodhizazen@fedoraproject.org> and contributors.\n";
+     static char c3[] = "Copying policy: GPL v3.\n";
+     static char c4[] = "No warranty.\n";
 }
 
 void
