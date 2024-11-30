@@ -299,6 +299,7 @@ main (int argc, char *argv[])
 {
      FILE *dp;
      int index = -1;
+     int r_index = -1;
      char *stop_char_ptr;
      char dp_filename [200];
      enum {BPS, MULLER, RICHARDS, BOTH, POLISH} dhammapada_version = BPS;
@@ -390,7 +391,11 @@ open_file:
      else if (index != -1)
           Get_and_print_verse_number_n (dp, index);
      else
-          Get_and_print_verse (dp, Random_index ());
+          if (r_index == -1 )
+               r_index = Random_index ();
+          if (index == -1)
+               Get_and_print_verse (dp, r_index);
+
      /* Close the file */
      fclose (dp);
      /* If both, set dhammapada_version to MULLER and goto open_file */
