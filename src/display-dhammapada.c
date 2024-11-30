@@ -1,10 +1,6 @@
 #ifndef VERSION
 #define VERSION "1.0"
 #endif
-static char c1[] = "     display-dhammapada V" VERSION "\n";
-static char c2[] = " (C) June 2012 by bodhi.zazen <bodhizazen@fedoraproject.org> and contributors.\n";
-static char c3[] = " Copying policy: GPL v3.\n";
-static char c4[] = " No warranty.\n";
 
 #include <errno.h>
 #include <stdlib.h>
@@ -180,6 +176,10 @@ Find_verse (FILE * dp, char *begin_mark)
 void
 Help (void)
 {
+     static char c1[] = "     display-dhammapada V" VERSION "\n";
+     static char c2[] = "(C) June 2012 by bodhi.zazen <bodhizazen@fedoraproject.org> and contributors.\n";
+     static char c3[] = "Copying policy: GPL v3.\n";
+     static char c4[] = "No warranty.\n";
      printf ("%s Displays a random Dhammapada verse.\n", c1);
      printf (" Arguments: \n"
           "           -s               Use the Buddhist Publication Society's translation (default)\n"
