@@ -353,7 +353,6 @@ main (int argc, char *argv[])
           }
      }
 open_file:
-     /* Open the file (Richards if both) */
      dp = NULL;
      dp_filename[0] = ' ';
      filename_number = 1;
